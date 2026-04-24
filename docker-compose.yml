@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: amoacademy_backend
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - laravel_storage:/var/www/html/storage
+    #  - ./:/var/www/html
+    networks:
+      - backend_net
+      - shared_network
+    ports:
+      - "9000:80"  
+    env_file:
+      - stack.env
+    environment:
+      - RUN_MIGRATIONS=true
+      - RUN_QUEUE=false
+  queue:
+    build: .
+    container_name: amoacademy_queue
+    restart: unless-stopped
+    working_dir: /var/www/html
+    networks:
+      - backend_net
+      - shared_network
+    depends_on:
+      - mysql
+    env_file:
+      - stack.env
+    environment:
+      - RUN_QUEUE=true
+
+  mysql:
+    image: mysql:8
+    container_name: amoacademy_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: InterNet#2025#
+      MYSQL_DATABASE: amoaca_db1
+      MYSQL_USER: amoaca_1
+      MYSQL_PASSWORD: RCGR4Q3sNxHEsKCR
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend_net
+  # test komentar
+  adminer:
+    image: adminer
+    container_name: amoacademy_adminer
+    restart: unless-stopped
+    networks:
+      - backend_net
+    expose:
+      - 8080
+
+networks:
+  backend_net:
+  shared_network:
+    external: true 
+
+volumes:
+  mysql_data:
+  laravel_storage:

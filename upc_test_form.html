@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate UPC Payment Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; }
+    textarea { width: 100%; height: 200px; margin-bottom: 10px; }
+    button { padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    #form-preview { margin-top: 20px; border: 1px solid #ddd; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Generate UPC Payment Form</h2>
+  <p>Paste the <code>form_data</code> from the <code>/initiate</code> response below, then click "Generate Form".</p>
+  <textarea id="form-data" placeholder='Paste form_data here, e.g., {"Version":"1","MerchantID":"1731267",...}'></textarea>
+  <button onclick="generateForm()">Generate Form</button>
+  <div id="form-preview"></div>
+
+  <script>
+    function generateForm() {
+      const formDataInput = document.getElementById('form-data').value;
+      const previewDiv = document.getElementById('form-preview');
+
+      try {
+        const formData = JSON.parse(formDataInput);
+        const actionUrl = 'https://ecg.test.upc.ua/ecgtest/enter';
+
+        let formHtml = `<form id="upc-payment-form" action="${actionUrl}" method="POST">`;
+        for (const [key, value] of Object.entries(formData)) {
+          formHtml += `<input type="hidden" name="${key}" value="${value}">`;
+        }
+        formHtml += `<button type="submit">Submit to UPC Gateway</button></form>`;
+
+        previewDiv.innerHTML = formHtml;
+      } catch (error) {
+        previewDiv.innerHTML = `<p style="color: red;">Error: Invalid JSON format. Please check the form_data.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -13,9 +13,9 @@
 
 ---
 
-## 📖 About
+## About
 
-A full-stack web application that enables **course creators** to sell digital content and **students** to purchase and access educational materials. Built from scratch with complete payment integration and hosting setup.
+Full-stack web application that enables course creators to sell digital content and students to purchase and access educational materials. Built from scratch with complete payment integration and hosting setup.
 
 ---
 
@@ -25,78 +25,14 @@ A full-stack web application that enables **course creators** to sell digital co
 |---|---|
 | **Backend** | Laravel, MySQL |
 | **Frontend** | React |
-| **Payments** | PayPal, UPC |
-| **Infrastructure** | Hetzner, Cloudflare R2 |
+| **Payment Processing** | PayPal, UPC |
+| **Infrastructure** | Hetzner hosting, R2 CloudStorage for media assets |
 
 ---
 
 ## ✨ Key Features
 
-- 📚 **Course Management** — Full course lifecycle with enrollment tracking
-- 💳 **Payment Integration** — Multiple payment processors (PayPal, UPC)
-- 🔐 **Auth & Authorization** — Secure user authentication and role management
-- 🚀 **Automated Deployment** — CI/CD pipeline for seamless releases
-- ☁️ **Cloud Media Storage** — R2 CloudStorage for all media assets
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- PHP `>= 8.1`
-- Composer
-- Node.js & npm
-- MySQL
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/amoacademy.git
-cd amoacademy
-
-# Install PHP dependencies
-composer install
-
-# Install JS dependencies
-npm install
-
-# Set up environment
-cp .env.example .env
-php artisan key:generate
-
-# Run migrations
-php artisan migrate
-
-# Start development servers
-php artisan serve
-npm run dev
-```
-
----
-
-## ⚙️ Environment Variables
-
-Configure the following in your `.env` file:
-
-```env
-DB_DATABASE=amoacademy
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
-
-PAYPAL_CLIENT_ID=your_paypal_client_id
-PAYPAL_SECRET=your_paypal_secret
-
-CLOUDFLARE_R2_BUCKET=your_bucket_name
-CLOUDFLARE_R2_ACCESS_KEY=your_access_key
-CLOUDFLARE_R2_SECRET_KEY=your_secret_key
-```
-
----
-
-<div align="center">
-
-Made with ❤️ · AmoAcademy
-
-</div>
+- 📚 Course management system with enrollment tracking
+- 💳 Integrated payment flows with multiple processors
+- 🔐 User authentication and authorization
+- 🚀 Automated deployment pipeline
